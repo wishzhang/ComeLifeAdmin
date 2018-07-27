@@ -8,10 +8,10 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="(item,index) in gData">
+      <tr v-for="(item,index) in data">
         <td>{{index+1}}</td>
-        <td>{{item.content}}</td>
-        <td>{{item.author}}</td>
+        <td v-for="(c,i) in columes" v-if="c.key!=='order'">
+           {{item[c.key]}}
         <td>
           <li class="btn btn-primary" @click="check(columes,item,index)">查看</li>
           <li class="btn btn-primary" @click="edit(columes,item,index)">编辑</li>
@@ -30,13 +30,21 @@
 
   export default {
     name: "grid",
-    props: {
-      columes: Array,
-      data: Array
-    },
     data() {
       return {
-        gData: this.data
+        columes: [
+          {
+            title: '序号',
+            key: 'order'
+          }, {
+            title: '内容',
+            key: 'content'
+          }, {
+            title: '作者',
+            key: 'author'
+          }
+        ],
+        data: []
       }
     },
     created() {
@@ -44,7 +52,7 @@
     },
     methods: {
       add(columes, item, index) {
-        this.$router.push({name: 'gridAdd'})
+        this.$router.push({name: 'gridAdd',params: {columes, item, index}})
       },
       check(columes, item, index) {
         this.$router.push({name: 'gridCheck', params: {columes, item, index}})
@@ -53,15 +61,15 @@
         this.$router.push({name: 'gridEdit', params: {columes, item, index}})
       },
       remove(columes, item, index) {
-        var _this=this;
-        axios.post(api.HOST+'/delSentence',{
-          _id:item._id
+        var _this = this;
+        axios.post(api.HOST + '/delSentence', {
+          _id: item._id
         })
           .then(function (response) {
             var r = response.data;
             if (r.code === 0) {
               _this.fetchData();
-            }else{
+            } else {
               alert('删除失败');
             }
           })
@@ -71,11 +79,13 @@
       },
       fetchData() {
         var _this = this;
-        axios.post(api.HOST+'/getSentences')
+        axios.post(api.HOST + '/getSentences')
           .then(function (response) {
             var r = response.data;
             if (r.code === 0) {
-              _this.gData = r.data;
+              _this.data = r.data;
+            } else {
+              alert('句子迷获取失败');
             }
           })
           .catch(function (error) {

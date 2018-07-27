@@ -20,6 +20,7 @@
 
   export default {
     name: "Add",
+    props:['columes','item','index'],
     data() {
       return {
         content: '',
