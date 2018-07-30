@@ -3,9 +3,17 @@
 import Vue from 'vue'
 import App from '@/App'
 import router from '@/router'
-import 'bootstrap'
-import '@/assets/css/bootstrap.css'
-import '@/assets/css/dashboard.css'
+import axios from 'axios'
+import API from '@/api/api.js'
+/*import 'bootstrap'
+import '@/assets/css/bootstrap.css'*/
+
+import 'element-ui/lib/theme-chalk/index.css';
+import ElementUI from 'element-ui';
+
+Vue.use(ElementUI);
+Vue.prototype.axios = axios;
+Vue.prototype.API=API;
 
 
 Vue.config.productionTip = false

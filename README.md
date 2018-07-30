@@ -31,7 +31,8 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## 组件
 ### 表格
-var grid={
+
+> var grid={
 	columes:[{
 		title:'序号',
 		key:'order'
@@ -59,6 +60,7 @@ var grid={
 }
 
 ## 开发思路
+vue+vue-router+webpack+element-ui  
 组件化开发方式
 
 采用vue-router为单页面应用驱动开发，监听url为基础，若该组件含link则，含嵌套；若一个link

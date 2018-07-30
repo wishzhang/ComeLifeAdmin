@@ -1,17 +1,20 @@
 <template>
-  <form>
-
-    <div class="form-group">
-      <label for="exampleFormControlTextarea1">内容</label>
-      <textarea class="form-control" id="exampleFormControlTextarea1" style="overflow: auto" rows="10"
-                required v-model="content"></textarea>
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlInput2">作者</label>
-      <input type="email" class="form-control" id="exampleFormControlInput2" required v-model="author">
-    </div>
-    <button type="button" class="btn btn-primary" @click="postData">Submit</button>
-  </form>
+  <el-form label-position="right" label-width="80px" :model="item">
+    <el-form-item label="内容">
+      <el-input
+        type="textarea"
+        :rows="10"
+        placeholder="请输入内容"
+        v-model="item.content">
+      </el-input>
+    </el-form-item>
+    <el-form-item label="作者">
+      <el-input v-model="item.author"></el-input>
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" :loading="false" style="width:100%;" @click="postData">确定提交</el-button>
+    </el-form-item>
+  </el-form>
 </template>
 
 <script>
@@ -20,23 +23,26 @@
 
   export default {
     name: "Add",
-    props:['columes','item','index'],
     data() {
       return {
-        content: '',
-        author: ''
+        item:{
+          content: '',
+          author: ''
+        }
       }
     },
     methods: {
       postData() {
-        axios.post(api.HOST + '/addSentence', {
-          content: this.content,
-          author: this.author
+        var _this=this;
+        axios.post(this.API.HOST + '/addSentence', {
+          content: this.item.content,
+          author: this.item.author
         })
           .then(function (res) {
             var r = res.data;
             if (r.code === 0) {
               alert('提交成功');
+              _this.$router.go(-1);
             } else {
               alert('提交失败');
             }
