@@ -34,7 +34,8 @@
     methods: {
       postData() {
         var _this=this;
-        axios.post(this.API.HOST + '/addSentence', {
+        axios.post(
+          + '/addSentence', {
           content: this.item.content,
           author: this.item.author
         })

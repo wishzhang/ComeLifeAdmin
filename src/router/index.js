@@ -6,6 +6,8 @@ import Edit from '@/components/grid/Edit.vue'
 import Sentence from '@/components/Sentence'
 import Report from '@/components/Report'
 import Tree from '@/components/Tree'
+import User from '@/components/page/user/User'
+import Feedback from '@/components/page/feedback/Feedback'
 
 Vue.use(Router)
 
@@ -13,14 +15,14 @@ const router= new Router({
   routes: [
     {
       path:'/',
-      components: {
-        grid: Grid
+      redirect:{
+        name:'gridView'
       }
     },
     {
       path: '/sentence',
       components:{
-        Sentence
+        index:Sentence
       },
       children: [
         {
@@ -50,6 +52,20 @@ const router= new Router({
           }
         }
       ]
+    },
+    {
+      name:'user',
+      path:'/user',
+      components:{
+        index:User
+      }
+    },
+    {
+      name:'feedback',
+      path:'/feedback',
+      components:{
+        index:Feedback
+      }
     },
     {
       path:'/report',

@@ -14,9 +14,9 @@
               <i class="el-icon-location"></i>
               <span>导航一</span>
             </template>
-            <el-menu-item index="/sentence/gridView">句子迷</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
-            <el-menu-item index="1-3">选项3</el-menu-item>
+            <el-menu-item :index="{name:'gridView'}">句子迷</el-menu-item>
+            <el-menu-item :index="{name:'user'}">用户</el-menu-item>
+            <el-menu-item :index="{name:'feedback'}">反馈与建议</el-menu-item>
             <el-menu-item index="1-4">选项4</el-menu-item>
           </el-submenu>
           <el-menu-item index="2">
@@ -37,7 +37,7 @@
     <el-container>
       <el-header>Header</el-header>
       <el-main>
-        <router-view name="Sentence"></router-view>
+        <router-view name="index"></router-view>
       </el-main>
     </el-container>
   </el-container>

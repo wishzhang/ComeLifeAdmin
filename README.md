@@ -32,10 +32,14 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ## 组件
 ### 表格
 
-> var grid={
-	columes:[{
-		title:'序号',
-		key:'order'
+
+
+
+
+` var grid={  
+	columes:[{  
+		title:'序号',  
+		key:'order'  
 	},{
 		title:'内容',
 		key:'content'
@@ -57,13 +61,17 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 		author:'张爱玲',
 		createTime:'2018-7-25'
 	}]
-}
+}`
 
 ## 开发思路
-vue+vue-router+webpack+element-ui  
+vue+vue-router+vuex+webpack+element-ui  
 组件化开发方式
 
 采用vue-router为单页面应用驱动开发，监听url为基础，若该组件含link则，含嵌套；若一个link
 出口为多个视图，则用同级组件。
 
 命名路由，命名视图。
+
+### 功能
+- 用户管理
+- 句子迷管理
